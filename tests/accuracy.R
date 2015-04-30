@@ -10,17 +10,17 @@ accuracyTest <- function(df = NULL, appeal_id = NULL, verbose = FALSE) {
   # non-cap figures are not tested at this point
   # because those aggregates are not appearing
   # as a single call from the API.
-  indIDs <- c('CHD.FUN.147', 'CHD.FUN.148', 'CHD.FUN.149', 'CHD.FUN.150')
+  indids <- c('CHD.FUN.147', 'CHD.FUN.148', 'CHD.FUN.149', 'CHD.FUN.150')
   
   # appeal id summaries
   fts_summary = fetchSummary(appeal_id)
 
   if (verbose) print(fts_summary)
   
-  for (i in 1:length(indIDs)) {
+  for (i in 1:length(indids)) {
     # extracting the max value out of
     # the timeseries respective indicator
-    scraped = max(df$value[df$indID == indIDs[i]])
+    scraped = max(df$value[df$indid == indids[i]])
 
     if (verbose) print(scraped)
 
@@ -35,11 +35,11 @@ accuracyTest <- function(df = NULL, appeal_id = NULL, verbose = FALSE) {
     
     # testing
     if (scraped == fts) {
-      cat(indIDs[i], ' | ')
+      cat(indids[i], ' | ')
       cat('Things seem wonderful!\n') 
     }
     else { 
-      cat(indIDs[i], ' | ')
+      cat(indids[i], ' | ')
       cat('Spooooky!\n')
     }
   }
