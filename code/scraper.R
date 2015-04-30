@@ -41,15 +41,15 @@ runScraper <- function(test = TRUE, patch = TRUE) {
 }
 
 
-runScraper()
-# # Changing the status of SW.m
-# tryCatch(runScraper(patch=FALSE),
-#          error = function(e) {
-#            cat('Error detected ... sending notification.')
-#            system('mail -s "FTS Ebola failed." luiscape@gmail.com, takavarasha@un.org')
-#            changeSwStatus(type = "error", message = "Scraper failed.")
-#            { stop("!!") }
-#          }
-# )
-# # If success:
-# changeSwStatus(type = 'ok')
+
+# Changing the status of SW.m
+tryCatch(runScraper(),
+         error = function(e) {
+           cat('Error detected ... sending notification.')
+           system('mail -s "FTS Nepal Failed." luiscape@gmail.com')
+           changeSwStatus(type = "error", message = "Scraper failed.")
+           { stop("!!") }
+         }
+)
+# If success:
+changeSwStatus(type = 'ok')
