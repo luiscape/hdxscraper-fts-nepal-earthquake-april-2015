@@ -36,7 +36,7 @@ def getResources(p):
                   { "id": "dsid", "type": "text" },
                   { "id": "region", "type": "text" },
                   { "id": "period", "type": "text" },
-                  { "id": "value", "type": "float" },
+                  { "id": "value", "type": "text" },
                   { "id": "source", "type": "text" }
                 ]
             },
