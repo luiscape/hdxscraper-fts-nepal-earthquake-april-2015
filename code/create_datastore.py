@@ -27,16 +27,20 @@ ckan = ckanapi.RemoteCKAN('http://data.hdx.rwlabs.org', apikey=API_KEY)
 def getResources(p):
     resources = [
         {
-            'resource_id': 'bdc01eb9-ed81-4887-bb64-f4317bf4221e',
+            'resource_id': '1d2bf2ec-7551-4485-bf39-c16b71ac8085',
             'path': p,
             'schema': {
                 "fields": [
-                  { "id": "month", "type": "text" },
-                  { "id": "num_refugees", "type": "integer" },
-                  { "id": "period", "type": "text" }
+                  { "id": "indid", "type": "text" },
+                  { "id": "indicator_name", "type": "text" },
+                  { "id": "dsid", "type": "text" },
+                  { "id": "region", "type": "text" },
+                  { "id": "period", "type": "timestamp" },
+                  { "id": "value", "type": "float" },
+                  { "id": "source", "type": "text" }
                 ]
             },
-            'indexes':["month"]
+            'indexes':["indid", "indicator_name"]
         }
     ]
     return resources
@@ -155,15 +159,15 @@ def runEverything(p):
     print 'Done.'
     print '-------------------------------------'
 
-runEverything(FILE_PATH)
-# # Error handler for running the entire script
-# try:
-#     runEverything(FILE_PATH)
-#     # if everything ok
-#     print "ScraperWiki Status: Everything seems to be just fine."
-#     scraperwiki.status('ok')
 
-# except Exception as e:
-#     print e
-#     scraperwiki.status('error', 'Creating datastore failed')
-#     os.system("mail -s 'Nepal Earthquake Topline: creating datastore failed.' luiscape@gmail.com")
+# Error handler for running the entire script
+try:
+    runEverything(FILE_PATH)
+    # if everything ok
+    print "ScraperWiki Status: Everything seems to be just fine."
+    scraperwiki.status('ok')
+
+except Exception as e:
+    print e
+    scraperwiki.status('error', 'Creating datastore failed')
+    os.system("mail -s 'FTS Nepal Earthquake: creating datastore failed.' luiscape@gmail.com")
