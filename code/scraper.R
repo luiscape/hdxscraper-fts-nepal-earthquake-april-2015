@@ -3,7 +3,7 @@ library(RCurl)
 library(rjson)
 
 # ScraperWiki deployed
-onSw <- function(p = NULL, d = 'tool/', a = FALSE) {
+onSw <- function(p = NULL, d = 'tool/', a = TRUE) {
   if (a == T) return(paste0(d,p))
   else return(p)
 }
@@ -23,14 +23,14 @@ patchErrors <- function(df = NULL, v = NULL) {
   return(df)
 }
 
-runScraper <- function(test = FALSE, patch = FALSE) {
+runScraper <- function(test = TRUE, patch = TRUE) {
   # Data collection
   fts_summary <- fetchSummary(1100)
   fts_timeseries <- fetchTimeSeries(16575)
   
   # Apply patch for data point from December 2015.
   # If errors are patched, tests will fail.
-  if (patch) fts_timeseries <- patchErrors(df = fts_timeseries, v = c(NULL))
+  if (patch) fts_timeseries <- patchErrors(df = fts_timeseries, v = c(229145))
   
   # Extracting indicators
   indicator_data <- exctractIndicators(fts_timeseries)
@@ -41,7 +41,7 @@ runScraper <- function(test = FALSE, patch = FALSE) {
 }
 
 
-runScraper(patch=FALSE)
+runScraper()
 # # Changing the status of SW.m
 # tryCatch(runScraper(patch=FALSE),
 #          error = function(e) {

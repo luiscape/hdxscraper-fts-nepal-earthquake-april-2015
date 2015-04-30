@@ -1,2 +1,4 @@
 .Rhistory
 *.sqlite
+venv/*
+venv/**

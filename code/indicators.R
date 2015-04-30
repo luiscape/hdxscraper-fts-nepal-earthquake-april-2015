@@ -34,7 +34,7 @@ exctractIndicators <- function(df = NULL) {
   non_cap_funding$value <- cumsum(non_cap_funding$value)  # making values cumulative
   
   ## Extracting CHD.FUN.140 // CAP Requirements
-  sub <- fetchRequirement(1060)
+  sub <- fetchRequirement(1100)
   
   cap_required <- data.frame(
     indID = 'CHD.FUN.147',
@@ -50,7 +50,7 @@ exctractIndicators <- function(df = NULL) {
   sub <- df[
       (
         (df$status == 'Paid contribution' | df$status == 'Commitment')
-        & df$appeal_id == 1060
+        & df$appeal_id == 1100
         & df$is_allocation != 1
       ) | (df$donor == 'Central Emergency Response Fund' | df$donor == 'Common Humanitarian Fund'), 
     ]
@@ -70,21 +70,19 @@ exctractIndicators <- function(df = NULL) {
   sub <- df[
       (
         (df$status == 'Paid contribution' | df$status == 'Commitment')
-        & df$appeal_id == 1060
+        & df$appeal_id == 1100
         & df$is_allocation != 1
       ) | (df$donor == 'Central Emergency Response Fund' | df$donor == 'Common Humanitarian Fund'),
     ]
-  
-  period_data = row.names(tapply(sub$amount, sub$decision_date, sum))
-  value_data = tapply(sub$amount, sub$decision_date, sum)
+
 
   ## Creating data.frame 
   cap_coverage <- data.frame(
     indID = 'CHD.FUN.149',
     dsID = 'fts-nepal-earthquake-2015',
     region = 'WLD',
-    period = ifelse(is.null(period_data), 0, period_data),
-    value = ifelse(is.null(value_data), 0, value_data),
+    period = row.names(tapply(sub$amount, sub$decision_date, sum)),
+    value = tapply(sub$amount, sub$decision_date, sum),
     source = 'http://fts.unocha.org/pageloader.aspx?page=emerg-emergencyDetails&emergID=16575'
   )
   row.names(cap_coverage) <- NULL  # cleaning row.names

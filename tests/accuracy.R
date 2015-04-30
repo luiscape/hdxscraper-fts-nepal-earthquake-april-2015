@@ -1,7 +1,7 @@
 ## This tests makes sure that the figures calculated are the same as
 ## the ones displayed on FTS' website. 
 
-accuracyTest <- function(df = NULL, appeal_id = NULL, verbose = TRUE) {
+accuracyTest <- function(df = NULL, appeal_id = NULL, verbose = FALSE) {
   cat('-------------------------------\n')
   cat('Running tests:\n')
   cat('-------------------------------\n')
