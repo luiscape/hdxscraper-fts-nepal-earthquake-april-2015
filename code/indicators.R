@@ -9,6 +9,7 @@ exctractIndicators <- function(df = NULL) {
   
   non_cap_pledges <- data.frame(
     indID = 'CHD.FUN.145',
+    indicator_name = 'Total Funding to the Emergency: Nepal Earthquake - April 2015 (Pledges)',
     dsID = 'fts-nepal-earthquake-2015',
     region = 'WLD',
     period = row.names(tapply(sub$amount, sub$decision_date, sum)),
@@ -24,6 +25,7 @@ exctractIndicators <- function(df = NULL) {
   
   non_cap_funding <- data.frame(
     indID = 'CHD.FUN.146',
+    indicator_name = 'Total Funding to the Emergency: Nepal Earthquake - April 2015 (Funding)',
     dsID = 'fts-nepal-earthquake-2015',
     region = 'WLD',
     period = row.names(tapply(sub$amount, sub$decision_date, sum)),
@@ -38,6 +40,7 @@ exctractIndicators <- function(df = NULL) {
   
   cap_required <- data.frame(
     indID = 'CHD.FUN.147',
+    indicator_name = 'Nepal Earthquake Flash Appeal 2015 - Overview of Requirements and Funding (Requested)',
     dsID = 'fts-nepal-earthquake-2015',
     region = 'WLD',
     period = as.character(as.Date(sub$launch_date)),
@@ -57,6 +60,7 @@ exctractIndicators <- function(df = NULL) {
   
   cap_funding <- data.frame(
     indID = 'CHD.FUN.148',
+    indicator_name = 'Nepal Earthquake Flash Appeal 2015 - Overview of Requirements and Funding (Funding)',
     dsID = 'fts-nepal-earthquake-2015',
     region = 'WLD',
     period = row.names(tapply(sub$amount, sub$decision_date, sum)),
@@ -79,6 +83,7 @@ exctractIndicators <- function(df = NULL) {
   ## Creating data.frame 
   cap_coverage <- data.frame(
     indID = 'CHD.FUN.149',
+    indicator_name = 'Nepal Earthquake Flash Appeal 2015 - Overview of Requirements and Funding (Coverage)',
     dsID = 'fts-nepal-earthquake-2015',
     region = 'WLD',
     period = row.names(tapply(sub$amount, sub$decision_date, sum)),
@@ -102,6 +107,7 @@ exctractIndicators <- function(df = NULL) {
 
   cap_pledges <- data.frame(
     indID = 'CHD.FUN.150',
+    indicator_name = 'Nepal Earthquake Flash Appeal 2015 - Overview of Requirements and Funding (Pledges)',
     dsID = 'fts-nepal-earthquake-2015',
     region = 'WLD',
     period = ifelse(is.null(period_data), NA, period_data),
