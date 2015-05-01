@@ -18,7 +18,7 @@ parseCPSFormat <- function(df) {
   # name
   dataset <- data.frame(
     dsID = 'fts-nepal-earthquake-2015',
-    last_updated = as.Date(as.character(max(value$period))),
+    last_updated = max(as.Date(value$period)),
     last_scraped = as.character(Sys.Date()),
     name = 'Nepal Earthquake - April 2015'
   )

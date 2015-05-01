@@ -3,7 +3,7 @@ library(RCurl)
 library(rjson)
 
 # ScraperWiki deployed
-onSw <- function(p = NULL, d = 'tool/', a = TRUE) {
+onSw <- function(p = NULL, d = 'tool/', a = FALSE) {
   if (a == T) return(paste0(d,p))
   else return(p)
 }
@@ -46,6 +46,9 @@ runScraper <- function(test = TRUE, patch = TRUE) {
 tryCatch(runScraper(),
          error = function(e) {
            cat('Error detected ... sending notification.')
+             sink('http/log.txt')
+             print(e)
+             sink()
            system('mail -s "FTS Nepal Failed." luiscape@gmail.com')
            changeSwStatus(type = "error", message = "Scraper failed.")
            { stop("!!") }
